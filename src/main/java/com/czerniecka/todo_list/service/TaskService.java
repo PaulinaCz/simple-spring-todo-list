@@ -24,4 +24,8 @@ public class TaskService {
     public Task getById(Integer id) {
         return taskRepository.getById(id);
     }
+
+    public Task addTask(Task task) {
+        return taskRepository.addTask(task);
+    }
 }

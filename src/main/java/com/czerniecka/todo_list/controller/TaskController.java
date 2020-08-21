@@ -4,10 +4,7 @@ import com.czerniecka.todo_list.model.Task;
 import com.czerniecka.todo_list.service.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,6 +43,16 @@ public class TaskController {
 
 
         return "tasks-list";
+
+    }
+
+    @PostMapping("/add")
+    public String addTask(Model model,
+                            @ModelAttribute Task task){
+
+        Task taskToAdd = taskService.addTask(task);
+
+        return "redirect:/task/" + taskToAdd.getId();
 
     }
 }
