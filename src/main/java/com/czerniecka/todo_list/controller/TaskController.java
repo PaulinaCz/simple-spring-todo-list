@@ -53,13 +53,38 @@ public class TaskController {
 
     }
 
+    @GetMapping("/task/add")
+    public String addTaskForm(Model model){
+        Task task = new Task();
+        model.addAttribute("task", task);
+        model.addAttribute("addTask", true);
+
+        return "add-edit-task";
+    }
+
     @PostMapping("/task/add")
     public String addTask(Model model,
-                            @ModelAttribute Task task){
+                            @ModelAttribute("task") Task task){
 
-        Task taskToAdd = taskService.addTask(task);
+        task = taskService.addTask(task);
 
-        return "redirect:/task/" + taskToAdd.getId();
+        return "redirect:/task/" + task.getId();
+    }
+
+    @GetMapping("/task/edit/{taskId}")
+    public String editTask(Model model,
+                           @PathVariable Integer taskId){
+
+        Task task = taskService.getById(taskId);
+
+        if(task == null){
+            model.addAttribute("errorMessage", "Task not found");
+        }
+
+        model.addAttribute("task", task);
+        model.addAttribute("addTask", false);
+
+        return "add-edit-task";
 
     }
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${addTask} ? 'Create Task' : 'Edit Task'"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<h1 th:text="${addTask} ? 'Create Task' : 'Edit Task'" />
+
+<a th:href="@{/tasks}">Back to Tasks List</a>
+<br/>
+<br/>
+
+<form
+
+    th:action="${addTask} ? @{/task/add} : @{/task/edit}"
+    th:object="${task}" method="post">
+
+    <table border="0">
+
+        <tr th:if="${task.id}">
+            <td>Id</td>
+            <td>:</td>
+            <td th:utext="${task.id}">...</td>
+        </tr>
+        <tr>
+            <td>Task Title</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{title}"/></td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{description}" size="50"/></td>
+        </tr>
+        <tr>
+            <td>Time task added</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{creationTime}"/></td>
+        </tr>
+        <tr>
+            <td>Time to complete the task</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{completionTime}"/></td>
+        </tr>
+    </table>
+
+    <input type="submit" th:value="${addTask} ? 'Create' : 'Update'"/>
+
+</form>
+
+<br/>
+
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error"/>
+
+</body>
+</html>

@@ -11,7 +11,7 @@
 
 <div>
     <nobr>
-        <a th:href="@{/tasks/add}">Add Task</a> |
+        <a th:href="@{/task/add}">Add Task</a> |
         <a th:href="@{/}">Back to Index</a> |
     </nobr>
 </div>
@@ -27,20 +27,20 @@
             <th>Description</th>
             <th>Time Task Added</th>
             <th>Time to Complete The Task</th>
+            <th>Task View</th>
             <th>Edit</th>
         </tr>
         <tr th:each="task : ${tasks}">
             <td th:utext="${task.id}">...</td>
-            <!--            <td>-->
-            <!--                <a th:href="@{/students/{studentId}(studentId=${student.id})}" th:utext="${student.id}">...</a>-->
-            <!--            </td>-->
             <td th:utext="${task.title}">...</td>
             <td th:utext="${task.description}">...</td>
             <td th:utext="${task.creationTime}">...</td>
             <td th:utext="${task.completionTime}">...</td>
             <td>
-                <a th:href="@{/tasks/edit/{taskId}(taskId=${task.id})}">Edit</a>
                 <a th:href="@{/task/{taskId}(taskId=${task.id})}">Task View</a>
+            </td>
+            <td>
+                <a th:href="@{/task/edit/{taskId}(taskId=${task.id})}">Edit</a>
             </td>
         </tr>
     </table>
