@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/task")
+@RequestMapping
 public class TaskController {
 
     private TaskService taskService;
@@ -18,7 +18,14 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = {"/", "/index"})
+    public String displayStartPage(Model model) {
+        model.addAttribute("pageTitle", "Tasks");
+
+        return "index";
+    }
+
+    @GetMapping("/task/{id}")
     public String getTaskById(Model model,
                               @PathVariable String id){
 
@@ -46,7 +53,7 @@ public class TaskController {
 
     }
 
-    @PostMapping("/add")
+    @PostMapping("/task/add")
     public String addTask(Model model,
                             @ModelAttribute Task task){
 
