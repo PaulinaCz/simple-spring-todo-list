@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Tasks List</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+
+<body>
+<h1>Tasks List</h1>
+
+<div>
+    <nobr>
+        <a th:href="@{/tasks/add}">Add Task</a> |
+        <a th:href="@{/}">Back to Index</a> |
+    </nobr>
+</div>
+
+<br/>
+<br/>
+
+<div>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Task Title</th>
+            <th>Description</th>
+            <th>Time Task Added</th>
+            <th>Time to Complete The Task</th>
+            <th>Edit</th>
+        </tr>
+        <tr th:each="task : ${tasks}">
+            <td th:utext="${task.id}">...</td>
+            <!--            <td>-->
+            <!--                <a th:href="@{/students/{studentId}(studentId=${student.id})}" th:utext="${student.id}">...</a>-->
+            <!--            </td>-->
+            <td th:utext="${task.title}">...</td>
+            <td th:utext="${task.description}">...</td>
+            <td th:utext="${task.creationTime}">...</td>
+            <td th:utext="${task.completionTime}">...</td>
+            <td>
+                <a th:href="@{/tasks/edit/{taskId}(taskId=${task.id})}">Edit</a>
+                <a th:href="@{/task/{taskId}(taskId=${task.id})}">Task View</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<br/>
+<br/>
+
+</body>
+</html>

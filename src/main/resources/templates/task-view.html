@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Student details</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+
+<body>
+
+<h1>Task View</h1>
+<a th:href="@{/tasks}">Back to Task List</a>
+<br/>
+<br/>
+
+<div th:if="${task}">
+    <table border="0">
+        <tr>
+            <td>ID</td>
+            <td>:</td>
+            <td th:utext="${task.id}">...</td>
+        </tr>
+        <tr>
+            <td>Task Title</td>
+            <td>:</td>
+            <td th:utext="${task.title}">...</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>:</td>
+            <td th:utext="${task.description}">...</td>
+        </tr>
+        <tr>
+            <td>Time task added</td>
+            <td>:</td>
+            <td th:utext="${task.creationTime}">...</td>
+        </tr>
+        <tr>
+            <td>Time to complete the task</td>
+            <td>:</td>
+            <td th:utext="${task.completionTime}">...</td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+
+</div>
+
+<div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+</body>
+</html>
